@@ -1,83 +1,48 @@
-# Define a function calculator that takes three parameters: two numbers (a and b) and a choice of operation
-def calculator(a, b, choice):
-    # If the user chooses to add the numbers
-    if choice == 1:
-        # Return the sum of a and b
-        return a + b
-    # If the user chooses to subtract the numbers
-    elif choice == 2:
-        # Return the difference of a and b
-        return a - b
-    # If the user chooses to divide the numbers
-    elif choice == 3:
-        # Return the quotient of a and b
-        return a / b
-    # If the user chooses to multiply the numbers
-    elif choice == 4:
-        # Return the product of a and b
-        return a * b
-    # If the user chooses to exit the calculator
-    elif choice == 5:
-        # Return a message indicating that the calculator is exiting
-        return
-    # If the user enters an invalid choice
-    else:
-        # Return an error message
-        return "Invalid choice"
 
-# Print the available operations to the user
-print("Choose the operation:")
-print("1. Add")
-print("2. Subtract")
-print("3. Divide")
-print("4. Multiply")
-print("5. Exit")
+lst = []
 
-# Create an infinite loop to keep the calculator running until the user chooses to exit
-while True:
-    # Ask the user to enter their choice of operation
-    choice = int(input("Enter your choice: "))
-    
-    # If the user chooses to exit the calculator
-    if choice == 5:
-        # Print a message indicating that the calculator is exiting
-        print("Exiting the calculator...")
-        # Break out of the loop to end the program
-        break
-    # If the user chooses a valid operation (1-4)
-    elif choice in range(1, 5):
-        # Ask the user to enter the first number
-        a = int(input("Enter the first number: "))
-        # Ask the user to enter the second number
-        b = int(input("Enter the second number: "))
-        # Call the calculator function
-        result = calculator(a, b, choice)
-        # Print the result of the operation
-        print("Result:", result)
-    # If the user enters an invalid choice
-    else:
-        # Print an error message
-        print("Invalid choice! Please enter a number between 1 and 5.")
+# Number of students as input
+n = int(input("Enter number of students: "))
+
+# Iterating till the range
+for i in range(n):
+    ele = str(input(f"Enter student name {i + 1}: "))
+    # Adding the name of students
+    lst.append(ele)
+
+print("Initial List:", lst)
+
+# Input multiple items to remove, separated by spaces
+names_to_remove = input("Enter the name of student to remove (separated by spaces): ").split()
+
+# Convert the input to integers
+items_to_remove = [str(item) for item in names_to_remove]
+
+# Using list comprehension to create a new list excluding the items to remove
+lst = [ele for ele in lst if ele not in names_to_remove]
+print("Updated List:", lst)
 
 
-# Input: a number from the user
-number = float(input("Enter a number: "))
+def count(text):
+    frequency = {char: text.count(char) for char in set(text)}
+    return frequency
 
-# Conditional statements 
-if number > 0:
-    print("The number is positive.")
-elif number < 0:
-    print("The number is negative.")
-else:
-    print("The number is zero.")
+#text from the user
+input = input("Enter the text: ")
+
+# Get the character frequency dictionary
+frequency = count(input)
+print("Character Frequency:", frequency)
 
 
+def filter_even_numbers(numbers):
+    # Using filter()  to filter even numbers
+    even_numbers = tuple(filter(lambda x: x % 2 == 0, numbers))
+    return even_numbers
 
-# Input a string from the user
-user_input = input("Enter a string: ")
+# tuple of integers
+input_tuple = tuple(map(int, input("Enter integers separated by spaces: ").split()))
 
-# Reversing the string 
-reversed_input = ''.join(reversed(user_input))
-
-# Display the reversed string
-print("Reversed string:", reversed_input)
+#new tuple with even numbers only
+result_tuple = filter_even_numbers(input_tuple)
+print("Tuple with even numbers:", result_tuple)
